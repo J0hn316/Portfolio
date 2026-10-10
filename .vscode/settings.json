@@ -2,6 +2,12 @@
   "cSpell.words": [
     "Consolas",
     "Menlo",
-    "Segoe"
-  ]
+    "Segoe",
+    "Stylesheet"
+  ],
+  "editor.formatOnSave": true,
+  "prettier.documentSelectors": ["**/*.astro"],
+  "[astro]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
