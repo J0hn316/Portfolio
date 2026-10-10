@@ -56,6 +56,44 @@ const navigationLinks = [
         ))
       }
     </nav>
+    
+    <!-- Theme toggle -->
+    <button
+      type="button"
+      data-theme-toggle
+      aria-label="Toggle color theme"
+      class="flex min-h-11 items-center justify-center
+         gap-2 rounded-lg border border-border
+         bg-surface px-3 text-sm font-medium
+         text-foreground transition-colors
+         hover:bg-background
+         focus-visible:outline-offset-4"
+    >
+      <svg
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <circle cx="12" cy="12" r="4" />
+        <path
+          d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42
+         m11.3 11.3 1.42 1.42M2 12h2m16 0h2
+         M4.93 19.07l1.42-1.42m11.3-11.3
+         1.42-1.42"
+        />
+      </svg>
+
+      <span data-theme-label class="hidden sm:inline">
+        Theme
+      </span>
+    </button>
 
     <!-- Mobile / tablet navigation -->
     <details class="group relative lg:hidden">
@@ -112,3 +150,73 @@ const navigationLinks = [
     </details>
   </div>
 </header>
+
+<script>
+  type Theme = "light" | "dark";
+
+  const STORAGE_KEY = "portfolio-theme";
+
+  const themeButton = document.querySelector<HTMLButtonElement>(
+    "[data-theme-toggle]"
+  );
+
+  const themeLabel = document.querySelector<HTMLElement>(
+    "[data-theme-label]"
+  );
+
+  const systemTheme = window.matchMedia(
+    "(prefers-color-scheme: dark)"
+  );
+
+  const getCurrentTheme = (): Theme => {
+    const selectedTheme = document.documentElement.dataset.theme;
+
+    if (selectedTheme === "light" || selectedTheme === "dark") {
+      return selectedTheme;
+    }
+
+    return systemTheme.matches ? "dark" : "light";
+  };
+
+  const updateThemeButton = (): void => {
+    const currentTheme = getCurrentTheme();
+    const nextTheme = currentTheme === "dark" ? "light" : "dark";
+
+    if (themeButton) {
+      themeButton.setAttribute(
+        "aria-label",
+        `Switch to ${nextTheme} theme`
+      );
+    }
+
+    if (themeLabel) {
+      themeLabel.textContent =
+        currentTheme === "dark" ? "Dark" : "Light";
+    }
+  };
+
+  const setTheme = (theme: Theme): void => {
+    document.documentElement.dataset.theme = theme;
+
+    try {
+      localStorage.setItem(STORAGE_KEY, theme);
+    } catch {
+      // Theme still changes for the current page.
+    }
+
+    updateThemeButton();
+  };
+
+  themeButton?.addEventListener("click", () => {
+    const currentTheme = getCurrentTheme();
+    const nextTheme = currentTheme === "dark" ? "light" : "dark";
+
+    setTheme(nextTheme);
+  });
+
+  systemTheme.addEventListener("change", () => {
+    updateThemeButton();
+  });
+
+  updateThemeButton();
+</script>

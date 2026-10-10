@@ -16,6 +16,23 @@ const {
 <!doctype html>
 <html lang="en">
   <head>
+    
+  <script is:inline>
+    (() => {
+      const root = document.documentElement;
+
+      try {
+        const savedTheme = localStorage.getItem("portfolio-theme");
+
+        if (savedTheme === "light" || savedTheme === "dark") {
+          root.dataset.theme = savedTheme;
+        }
+      } catch {
+        // If storage is unavailable, CSS follows the system theme.
+      }
+      })();
+  </script>
+
     <meta charset="UTF-8" />
 
     <meta
