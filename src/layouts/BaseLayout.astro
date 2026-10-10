@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import Header from "../components/layout/Header.astro";
+import Footer from "../components/layout/Footer.astro";
 
 interface Props {
   title: string;
@@ -8,37 +9,32 @@ interface Props {
 }
 
 const {
-  title, 
+  title,
   description = "Personal portfolio showcasing software development projects and professional IT experience.",
-} = Astro.props
+} = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
-    
-  <script is:inline>
-    (() => {
-      const root = document.documentElement;
+    <script is:inline>
+      (() => {
+        const root = document.documentElement;
 
-      try {
-        const savedTheme = localStorage.getItem("portfolio-theme");
+        try {
+          const savedTheme = localStorage.getItem("portfolio-theme");
 
-        if (savedTheme === "light" || savedTheme === "dark") {
-          root.dataset.theme = savedTheme;
+          if (savedTheme === "light" || savedTheme === "dark") {
+            root.dataset.theme = savedTheme;
+          }
+        } catch {
+          // If storage is unavailable, CSS follows the system theme.
         }
-      } catch {
-        // If storage is unavailable, CSS follows the system theme.
-      }
       })();
-  </script>
-
+    </script>
     <meta charset="UTF-8" />
 
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <meta name="description" content={description} />
 
@@ -46,8 +42,14 @@ const {
   </head>
 
   <body>
-    <Header />
+    <div class="flex min-h-screen flex-col">
+      <Header />
 
-    <slot />
+      <div class="flex-1">
+        <slot />
+      </div>
+
+      <Footer />
+    </div>
   </body>
 </html>

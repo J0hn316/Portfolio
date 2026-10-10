@@ -102,6 +102,27 @@
   }
 }
 
+
+/* ========================================
+   6. Shared layout utilities
+   ======================================== */
+
+@layer components {
+  .site-container {
+    width: 100%;
+    max-width: 72rem;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+
+  @media (min-width: 48rem) {
+    .site-container {
+      padding-inline: 2rem;
+    }
+  }
+}
+
+
 /* Respect users who prefer reduced motion. */
 @media (prefers-reduced-motion: reduce) {
   html {

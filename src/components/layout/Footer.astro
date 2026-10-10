@@ -1,0 +1,51 @@
+---
+const currentYear: number = new Date().getFullYear();
+
+const footerLinks = [
+  { label: "Home", href: "/" },
+  { label: "Projects", href: "/#projects" },
+  { label: "Contact", href: "/#contact" },
+];
+---
+
+<footer class="border-t border-border bg-surface">
+  <div class="site-container py-10">
+    <div class="flex flex-col justify-between gap-8 sm:flex-row">
+      <!-- Professional identity -->
+      <div class="space-y-2">
+        <p class="font-semibold tracking-tight">Developer Portfolio</p>
+
+        <p class="text-sm text-muted">Software Development & IT</p>
+      </div>
+
+      <!-- Footer navigation -->
+      <nav aria-label="Footer navigation">
+        <ul class="flex flex-wrap gap-x-6 gap-y-3">
+          {footerLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="text-sm text-muted transition-colors
+                         hover:text-primary
+                         focus-visible:text-primary"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </div>
+
+    <div
+      class="mt-8 flex flex-col justify-between gap-3
+             border-t border-border pt-6 sm:flex-row"
+    >
+      <p class="text-sm text-muted">
+        &copy; {currentYear} Developer Portfolio. All rights reserved.
+      </p>
+
+      <p class="text-sm text-muted">Built with Astro & TypeScript</p>
+    </div>
+  </div>
+</footer>
