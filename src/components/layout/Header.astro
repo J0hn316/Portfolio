@@ -1,0 +1,114 @@
+
+---
+const navigationLinks = [
+  { label: "Home", href: "/#home" },
+  { label: "About", href: "/#about" },
+  { label: "Skills", href: "/#skills" },
+  { label: "Experience", href: "/#experience" },
+  { label: "Projects", href: "/#projects" },
+  { label: "Contact", href: "/#contact" },
+];
+---
+
+<header
+  class="sticky top-0 z-50 border-b border-border bg-background"
+>
+  <div
+    class="mx-auto flex max-w-6xl items-center
+           justify-between gap-4 px-6 py-4"
+  >
+    <!-- Brand -->
+    <a
+      href="/"
+      class="flex items-center gap-3 rounded-md
+             focus-visible:outline-offset-4"
+      aria-label="Portfolio home"
+    >
+      <span
+        aria-hidden="true"
+        class="flex size-10 items-center justify-center
+               rounded-lg bg-blue-700 font-mono
+               font-bold text-white"
+      >
+        J
+      </span>
+
+      <span class="font-semibold tracking-tight">
+        Developer Portfolio
+      </span>
+    </a>
+
+    <!-- Desktop navigation -->
+    <nav
+      aria-label="Main navigation"
+      class="hidden items-center gap-6 lg:flex"
+    >
+      {
+        navigationLinks.map((link) => (
+          <a
+            href={link.href}
+            class="rounded-sm text-sm font-medium text-muted
+                   transition-colors hover:text-primary
+                   focus-visible:text-primary"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <!-- Mobile / tablet navigation -->
+    <details class="group relative lg:hidden">
+      <summary
+        class="flex min-h-11 min-w-11 cursor-pointer
+               list-none items-center justify-center
+               rounded-lg border border-border
+               text-foreground marker:hidden
+               [&::-webkit-details-marker]:hidden"
+        aria-label="Toggle navigation menu"
+      >
+        <svg
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M4 7h16" />
+          <path d="M4 12h16" />
+          <path d="M4 17h16" />
+        </svg>
+      </summary>
+
+      <nav
+        aria-label="Mobile navigation"
+        class="absolute right-0 top-full mt-3
+               w-56 rounded-xl border border-border
+               bg-surface p-3 shadow-lg"
+      >
+        <ul class="space-y-1">
+          {
+            navigationLinks.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="block rounded-lg px-4 py-3
+                         text-sm font-medium text-foreground
+                         hover:bg-background hover:text-primary
+                         focus-visible:bg-background"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </details>
+  </div>
+</header>
