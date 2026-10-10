@@ -1,24 +1,63 @@
+
 ---
 import "../styles/global.css";
 ---
 
+<!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Portfolio | Tailwind Test</title>
-	</head>
-	<body class="min-h-screen bg-slate-950 text-white">
-		<main class="mx-auto max-w-4xl px-6 py-2">
-			<h1 class="text-4xl font-bold text-cyan-400">
-				My Developer Portfolio
-			</h1>
-			<p class="mt-4 text-lg text-slate-300">
-				Astro, TypeScript, and Tailwind CSS are working.
-			</p>
-		</main>
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio | Design System Test</title>
+  </head>
+
+  <body>
+    <main class="mx-auto max-w-5xl px-6 py-16">
+      <section class="space-y-6">
+        <p class="font-mono text-sm text-primary">
+          SOFTWARE DEVELOPMENT / IT
+        </p>
+
+        <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">
+          Portfolio Design System
+        </h1>
+
+        <p class="max-w-2xl text-lg text-muted">
+          Testing our global colors, typography, spacing,
+          responsive layout, and theme foundation.
+        </p>
+
+        <div class="rounded-xl border border-border bg-surface p-6">
+          <h2 class="text-2xl font-semibold">
+            Example Project Card
+          </h2>
+
+          <p class="mt-3 text-muted">
+            This card uses semantic color tokens so its
+            appearance adapts to light and dark themes.
+          </p>
+
+          <a
+            href="#testing"
+            class="mt-5 inline-block rounded-lg bg-primary
+                   px-5 py-3 font-medium text-white
+                   hover:bg-primary-hover
+                   focus-visible:outline-offset-4"
+          >
+            Test Navigation
+          </a>
+        </div>
+      </section>
+
+      <section id="testing" class="mt-24">
+        <h2 class="text-2xl font-semibold">
+          Design System Testing
+        </h2>
+
+        <p class="mt-3 text-muted">
+          You've reached the testing section.
+        </p>
+      </section>
+    </main>
+  </body>
 </html>
