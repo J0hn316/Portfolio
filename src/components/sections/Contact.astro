@@ -1,0 +1,89 @@
+---
+interface ContactMethod {
+  label: string;
+  description: string;
+  href: string;
+  external: boolean;
+}
+
+const contactMethods: ContactMethod[] = [];
+
+// Add verified public contact methods here later.
+// Example object shape:
+// {
+//   label: "GitHub",
+//   description: "Explore my software projects and repositories.",
+//   href: "YOUR_VERIFIED_PUBLIC_URL",
+//   external: true,
+// }
+---
+
+<section
+  id="contact"
+  aria-labelledby="contact-heading"
+  class="scroll-mt-24 border-t border-border py-20 sm:py-28"
+>
+  <div class="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
+    <!-- Introduction -->
+    <div class="space-y-5">
+      <p
+        class="font-mono text-sm font-medium
+               tracking-wide text-primary"
+      >
+        GET IN TOUCH
+      </p>
+
+      <h2
+        id="contact-heading"
+        class="text-3xl font-bold tracking-tight
+               text-foreground sm:text-4xl"
+      >
+        Let's connect.
+      </h2>
+
+      <p class="max-w-xl leading-relaxed text-muted">
+        Interested in discussing software development opportunities, technical
+        projects, or potential collaborations? I'd be happy to connect.
+      </p>
+    </div>
+
+    <!-- Contact methods -->
+    <div class="rounded-xl border border-border bg-surface p-6">
+      {contactMethods.length > 0 ? (
+        <ul class="divide-y divide-border">
+          {contactMethods.map((method) => (
+            <li>
+              <a
+                href={method.href}
+                target={method.external ? "_blank" : undefined}
+                rel={method.external ? "noopener noreferrer" : undefined}
+                class="flex min-h-16 items-center
+                         justify-between gap-4 rounded-md
+                         py-4 text-foreground
+                         hover:text-primary"
+              >
+                <span class="space-y-1">
+                  <span class="block font-semibold">{method.label}</span>
+
+                  <span class="block text-sm text-muted">
+                    {method.description}
+                  </span>
+                </span>
+
+                <span aria-hidden="true">&nearr;</span>
+                {method.external && (
+                  <span class="sr-only">(opens in a new tab)</span>
+                )}
+              </a>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p class="text-sm leading-relaxed text-muted">
+          Professional contact links will be added here before the portfolio is
+          published.
+        </p>
+      )}
+    </div>
+  </div>
+</section>
