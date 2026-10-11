@@ -1,0 +1,81 @@
+---
+const highlights: {
+  title: string;
+  description: string;
+}[] = [
+  {
+    title: "Enterprise IT",
+    description:
+      "Supporting users, troubleshooting applications, and resolving technical issues.",
+  },
+  {
+    title: "Software Development",
+    description:
+      "Building web applications, backend APIs, and Python automation tools.",
+  },
+  {
+    title: "Engineering Mindset",
+    description:
+      "Applying problem-solving, testing, and maintainability practices.",
+  },
+];
+---
+
+<section
+  id="about"
+  aria-labelledby="about-heading"
+  class="scroll-mt-24 border-t border-border py-20 sm:py-28"
+>
+  <div class="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
+    <!-- Professional story -->
+    <div class="space-y-6">
+      <p class="font-mono text-sm font-medium tracking-wide text-primary">
+        ABOUT ME
+      </p>
+
+      <h2
+        id="about-heading"
+        class="text-3xl font-bold tracking-tight text-foreground sm:text-4xl"
+      >
+        A little about me
+      </h2>
+
+      <div class="space-y-5 leading-relaxed text-muted">
+        <p>
+          My background combines professional IT support and software
+          development. Through years of troubleshooting technical issues,
+          supporting enterprise applications, and working directly with users,
+          I've developed a practical approach to identifying problems and
+          finding reliable solutions.
+        </p>
+
+        <p>
+          Alongside my IT career, I've continued building my software
+          development skills through formal training and hands-on projects. I've
+          worked on full-stack web applications, backend APIs, automation tools,
+          and applications involving databases, authentication, and testing.
+        </p>
+
+        <p>
+          I'm focused on growing as a software engineer and creating software
+          that is maintainable, useful, and thoughtfully designed.
+        </p>
+      </div>
+    </div>
+
+    <!-- Experience highlights -->
+    <div class="grid gap-4">
+      {highlights.map((highlight) => (
+        <div class="rounded-xl border border-border bg-surface p-6">
+          <h3 class="text-lg font-semibold text-foreground">
+            {highlight.title}
+          </h3>
+
+          <p class="mt-2 text-sm leading-relaxed text-muted">
+            {highlight.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
