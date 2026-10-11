@@ -1,0 +1,79 @@
+---
+interface Props {
+  title: string;
+  category: string;
+  description: string;
+  highlights: string[];
+  technologies: string[];
+  repositoryUrl?: string;
+}
+
+const {
+  title,
+  category,
+  description,
+  highlights,
+  technologies,
+  repositoryUrl,
+} = Astro.props;
+---
+
+<article
+  class="flex h-full flex-col rounded-xl border
+         border-border bg-surface p-6 sm:p-8"
+>
+  <!-- Project category -->
+  <p class="font-mono text-xs font-medium tracking-wide text-primary">
+    {category}
+  </p>
+
+  <!-- Project title -->
+  <h3 class="mt-3 text-xl font-bold text-foreground">{title}</h3>
+
+  <!-- Project description -->
+  <p class="mt-4 leading-relaxed text-muted">{description}</p>
+
+  <!-- Technical highlights -->
+  <div class="mt-6">
+    <h4 class="text-sm font-semibold text-foreground">Technical highlights</h4>
+
+    <ul class="mt-3 list-disc space-y-2 pl-5 text-sm text-muted">
+      {highlights.map((highlight) => (
+        <li class="pl-1">{highlight}</li>
+      ))}
+    </ul>
+  </div>
+
+  <!-- Technologies -->
+  <ul class="mt-6 flex flex-wrap gap-2" aria-label={`${title} technologies`}>
+    {technologies.map((technology) => (
+      <li
+        class="rounded-md border border-border
+                 bg-background px-3 py-1.5
+                 font-mono text-xs text-foreground"
+      >
+        {technology}
+      </li>
+    ))}
+  </ul>
+
+  <!-- Project links -->
+  {repositoryUrl && (
+    <div class="mt-auto pt-8">
+      <a
+        href={repositoryUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex min-h-11 items-center
+                 rounded-md font-semibold text-primary
+                 underline-offset-4 hover:underline"
+      >
+        View Repository
+        <span aria-hidden="true" class="ml-2">
+          &rarr;
+        </span>
+        <span class="sr-only"> for {title} (opens in a new tab)</span>
+      </a>
+    </div>
+  )}
+</article>

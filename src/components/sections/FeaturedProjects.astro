@@ -1,0 +1,89 @@
+---
+import ProjectCard from "../ui/ProjectCard.astro";
+
+interface FeaturedProject {
+  title: string;
+  category: string;
+  description: string;
+  highlights: string[];
+  technologies: string[];
+  repositoryUrl?: string;
+}
+
+const featuredProjects: FeaturedProject[] = [
+  {
+    title: "Security Log Analyzer",
+    category: "PYTHON / SECURITY",
+    description:
+      "A Python application focused on processing and analyzing security-related log data.",
+    highlights: [
+      "Structured security log processing",
+      "Security-focused analysis workflows",
+      "Automated testing",
+    ],
+    technologies: ["Python", "Security", "Testing"],
+  },
+  {
+    title: "Personal Finance Tracker",
+    category: "DJANGO / FULL-STACK",
+    description:
+      "A Django web application for organizing and managing personal financial transactions.",
+    highlights: [
+      "Relational database models",
+      "Data validation and forms",
+      "Automated application testing",
+    ],
+    technologies: ["Python", "Django", "SQLite"],
+  },
+  {
+    title: "JWT Notes API",
+    category: "FASTAPI / BACKEND",
+    description:
+      "A backend REST API for managing notes with authenticated user access.",
+    highlights: [
+      "JWT-based authentication",
+      "Database integration with SQLAlchemy",
+      "Request validation and API testing",
+    ],
+    technologies: ["Python", "FastAPI", "SQLAlchemy", "JWT"],
+  },
+];
+---
+
+<section
+  id="projects"
+  aria-labelledby="projects-heading"
+  class="scroll-mt-24 border-t border-border py-20 sm:py-28"
+>
+  <div class="mb-12 max-w-3xl space-y-5">
+    <p class="font-mono text-sm font-medium tracking-wide text-primary">
+      FEATURED WORK
+    </p>
+
+    <h2
+      id="projects-heading"
+      class="text-3xl font-bold tracking-tight
+             text-foreground sm:text-4xl"
+    >
+      Projects I've built
+    </h2>
+
+    <p class="leading-relaxed text-muted">
+      A selection of applications and tools that demonstrate my experience with
+      backend development, databases, testing, and technical problem-solving.
+    </p>
+  </div>
+
+  <div class="grid gap-6 md:grid-cols-2">
+    {featuredProjects.map((project) => (
+      <ProjectCard
+        title={project.title}
+        category={project.category}
+        description={project.description}
+        highlights={project.highlights}
+        technologies={project.technologies}
+        repositoryUrl={project.repositoryUrl}
+      />
+    ))}
+  </div>
+</section>
