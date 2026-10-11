@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 import Hero from "../components/sections/Hero.astro";
 import About from "../components/sections/About.astro";
+import Skills from "../components/sections/Skills.astro";
 ---
 
 <BaseLayout
@@ -12,11 +13,7 @@ import About from "../components/sections/About.astro";
   <main class="site-container">
     <Hero />
     <About />
-
-    <section id="skills" class="scroll-mt-24 py-20">
-      <h2 class="text-2xl font-semibold">Skills</h2>
-      <p class="mt-3 text-muted">Technologies and tools I work with.</p>
-    </section>
+    <Skills />
 
     <section id="experience" class="scroll-mt-24 py-20">
       <h2 class="text-2xl font-semibold">Experience</h2>

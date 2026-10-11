@@ -1,0 +1,97 @@
+---
+interface SkillCategory {
+  title: string;
+  description: string;
+  skills: string[];
+}
+
+const skillCategories: SkillCategory[] = [
+  {
+    title: "Frontend Development",
+    description: "Building responsive and interactive user interfaces.",
+    skills: [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "TypeScript",
+      "React",
+      "Tailwind CSS",
+    ],
+  },
+  {
+    title: "Backend Development",
+    description: "Developing server-side applications and APIs.",
+    skills: ["Python", "Django", "Flask", "FastAPI", "Node.js", "Express"],
+  },
+  {
+    title: "Databases",
+    description: "Working with relational and document databases.",
+    skills: ["MongoDB", "PostgreSQL", "MySQL", "SQLite"],
+  },
+  {
+    title: "Development Tools",
+    description: "Tools and practices used throughout development.",
+    skills: ["Git", "GitHub", "VS Code", "REST APIs", "Testing"],
+  },
+  {
+    title: "IT & Systems",
+    description: "Supporting applications, systems, and end users.",
+    skills: [
+      "Application Troubleshooting",
+      "ServiceNow",
+      "Networking",
+      "Access Management",
+    ],
+  },
+];
+---
+
+<section
+  id="skills"
+  aria-labelledby="skills-heading"
+  class="scroll-mt-24 border-t border-border py-20 sm:py-28"
+>
+  <div class="mb-12 max-w-2xl space-y-5">
+    <p class="font-mono text-sm font-medium tracking-wide text-primary">
+      TECHNICAL SKILLS
+    </p>
+
+    <h2
+      id="skills-heading"
+      class="text-3xl font-bold tracking-tight text-foreground sm:text-4xl"
+    >
+      Skills & Technologies
+    </h2>
+
+    <p class="leading-relaxed text-muted">
+      Technologies and tools I've used to build applications, solve technical
+      problems, and support IT environments.
+    </p>
+  </div>
+
+  <div class="grid gap-6 md:grid-cols-2">
+    {skillCategories.map((category) => (
+      <article class="rounded-xl border border-border bg-surface p-6">
+        <h3 class="text-xl font-semibold text-foreground">{category.title}</h3>
+
+        <p class="mt-2 text-sm leading-relaxed text-muted">
+          {category.description}
+        </p>
+
+        <ul
+          class="mt-6 flex flex-wrap gap-2"
+          aria-label={`${category.title} skills`}
+        >
+          {category.skills.map((skill) => (
+            <li
+              class="rounded-md border border-border bg-background
+                       px-3 py-2 font-mono text-sm text-foreground"
+            >
+              {skill}
+            </li>
+          ))}
+        </ul>
+      </article>
+    ))}
+  </div>
+</section>
