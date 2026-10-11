@@ -1,0 +1,126 @@
+---
+interface ExperienceEntry {
+  role: string;
+  company: string;
+  period?: string;
+  description: string;
+  responsibilities: string[];
+  technologies: string[];
+}
+
+const experiences: ExperienceEntry[] = [
+  {
+    role: "EHR Analyst",
+    company: "Encore",
+    description:
+      "Providing enterprise healthcare application support and troubleshooting for Epic users.",
+    responsibilities: [
+      "Investigate application issues involving access, permissions, and clinical workflows.",
+      "Manage and document support tickets using ServiceNow.",
+      "Collaborate with support teams to troubleshoot and escalate complex incidents.",
+      "Prepare reports and support communication around application changes.",
+    ],
+    technologies: [
+      "Epic",
+      "ServiceNow",
+      "Application Support",
+      "Incident Management",
+    ],
+  },
+  {
+    role: "Helpdesk Analyst",
+    company: "Ahead",
+    period: "Jan 2022 – Jun 2023",
+    description:
+      "Provided technical support and troubleshooting for end users in a professional IT environment.",
+    responsibilities: [
+      "Investigated and resolved technical support requests.",
+      "Diagnosed software, hardware, and application issues.",
+      "Documented troubleshooting findings and resolutions.",
+      "Escalated issues requiring specialized technical assistance.",
+    ],
+    technologies: ["Technical Support", "Troubleshooting", "Ticket Management"],
+  },
+];
+---
+
+<section
+  id="experience"
+  aria-labelledby="experience-heading"
+  class="scroll-mt-24 border-t border-border py-20 sm:py-28"
+>
+  <div class="mb-12 max-w-3xl space-y-5">
+    <p class="font-mono text-sm font-medium tracking-wide text-primary">
+      PROFESSIONAL BACKGROUND
+    </p>
+
+    <h2
+      id="experience-heading"
+      class="text-3xl font-bold tracking-tight
+             text-foreground sm:text-4xl"
+    >
+      Professional Experience
+    </h2>
+
+    <p class="leading-relaxed text-muted">
+      My professional IT background has strengthened my troubleshooting,
+      analytical thinking, communication, and problem-solving skills.
+    </p>
+  </div>
+
+  <ol class="space-y-12 border-l-2 border-border pl-6 sm:pl-8">
+    {experiences.map((experience) => (
+      <li class="relative">
+        <span
+          aria-hidden="true"
+          class="absolute -left-7.75 top-2
+                   size-3 rounded-full bg-primary
+                   ring-4 ring-background
+                   sm:-left-9.75"
+        />
+
+        <article class="space-y-5">
+          <div class="space-y-2">
+            <div
+              class="flex flex-wrap items-center
+                       justify-between gap-2"
+            >
+              <h3 class="text-xl font-semibold text-foreground">
+                {experience.role}
+              </h3>
+
+              {experience.period && (
+                <p class="text-sm text-muted">{experience.period}</p>
+              )}
+            </div>
+
+            <p class="font-medium text-primary">{experience.company}</p>
+
+            <p class="leading-relaxed text-muted">{experience.description}</p>
+          </div>
+
+          <ul class="list-disc space-y-2 pl-5 text-muted">
+            {experience.responsibilities.map((item) => (
+              <li class="pl-1 leading-relaxed">{item}</li>
+            ))}
+          </ul>
+
+          <ul
+            class="flex flex-wrap gap-2"
+            aria-label={`${experience.role} technologies and skills`}
+          >
+            {experience.technologies.map((technology) => (
+              <li
+                class="rounded-md border border-border
+                         bg-surface px-3 py-2
+                         text-sm text-foreground"
+              >
+                {technology}
+              </li>
+            ))}
+          </ul>
+        </article>
+      </li>
+    ))}
+  </ol>
+</section>
