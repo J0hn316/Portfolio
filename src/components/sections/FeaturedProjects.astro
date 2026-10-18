@@ -1,53 +1,18 @@
 ---
+import { getCollection } from "astro:content";
 import ProjectCard from "../ui/ProjectCard.astro";
 
-interface FeaturedProject {
-  title: string;
-  category: string;
-  description: string;
-  highlights: string[];
-  technologies: string[];
-  repositoryUrl?: string;
-}
+// Retrieve only projects marked as featured.
+const featuredProjects = await getCollection(
+  "projects",
+  ({ data }) => data.featured,
+);
 
-const featuredProjects: FeaturedProject[] = [
-  {
-    title: "Security Log Analyzer",
-    category: "PYTHON / SECURITY",
-    description:
-      "A Python application focused on processing and analyzing security-related log data.",
-    highlights: [
-      "Structured security log processing",
-      "Security-focused analysis workflows",
-      "Automated testing",
-    ],
-    technologies: ["Python", "Security", "Testing"],
-  },
-  {
-    title: "Personal Finance Tracker",
-    category: "DJANGO / FULL-STACK",
-    description:
-      "A Django web application for organizing and managing personal financial transactions.",
-    highlights: [
-      "Relational database models",
-      "Data validation and forms",
-      "Automated application testing",
-    ],
-    technologies: ["Python", "Django", "SQLite"],
-  },
-  {
-    title: "JWT Notes API",
-    category: "FASTAPI / BACKEND",
-    description:
-      "A backend REST API for managing notes with authenticated user access.",
-    highlights: [
-      "JWT-based authentication",
-      "Database integration with SQLAlchemy",
-      "Request validation and API testing",
-    ],
-    technologies: ["Python", "FastAPI", "SQLAlchemy", "JWT"],
-  },
-];
+// Sort projects by their configured display order.
+// The project ID provides a stable tie-breaker.
+featuredProjects.sort(
+  (a, b) => a.data.order - b.data.order || a.id.localeCompare(b.id),
+);
 ---
 
 <section
@@ -77,12 +42,12 @@ const featuredProjects: FeaturedProject[] = [
   <div class="grid gap-6 md:grid-cols-2">
     {featuredProjects.map((project) => (
       <ProjectCard
-        title={project.title}
-        category={project.category}
-        description={project.description}
-        highlights={project.highlights}
-        technologies={project.technologies}
-        repositoryUrl={project.repositoryUrl}
+        title={project.data.title}
+        category={project.data.category}
+        description={project.data.description}
+        highlights={project.data.highlights}
+        technologies={project.data.technologies}
+        repositoryUrl={project.data.repositoryUrl}
       />
     ))}
   </div>
