@@ -1,0 +1,74 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ProjectCard from "../../components/ui/ProjectCard.astro";
+
+// Retrieve all project entries from the collection.
+const projects = await getCollection("projects");
+
+// Sort projects by display order, then ID.
+projects.sort(
+  (a, b) => a.data.order - b.data.order || a.id.localeCompare(b.id),
+);
+---
+
+<BaseLayout
+  title="Projects | Software Developer & IT Portfolio"
+  description="Explore my software development projects, backend APIs, Python automation tools, and technical work."
+>
+  <main id="main-content" class="site-container py-16 sm:py-24">
+    <!-- Page introduction -->
+    <header class="mb-12 max-w-3xl space-y-5">
+      <p
+        class="font-mono text-sm font-medium
+               tracking-wide text-primary"
+      >
+        MY WORK
+      </p>
+
+      <h1
+        class="text-4xl font-bold tracking-tight
+               text-foreground sm:text-5xl"
+      >
+        Projects
+      </h1>
+
+      <p class="text-lg leading-relaxed text-muted">
+        A collection of applications, APIs, and automation tools I've developed
+        while exploring different areas of software engineering.
+      </p>
+
+      <a
+        href="/"
+        class="inline-flex min-h-11 items-center
+               font-medium text-primary
+               underline-offset-4 hover:underline"
+      >
+        <span aria-hidden="true" class="mr-2">
+          &larr;
+        </span>
+        Back to Home
+      </a>
+    </header>
+
+    <!-- Project collection -->
+    {projects.length > 0 ? (
+      <div class="grid gap-6 md:grid-cols-2">
+        {projects.map((project) => (
+          <ProjectCard
+            title={project.data.title}
+            category={project.data.category}
+            description={project.data.description}
+            highlights={project.data.highlights}
+            technologies={project.data.technologies}
+            repositoryUrl={project.data.repositoryUrl}
+          />
+        ))}
+      </div>
+    ) : (
+      <p class="rounded-xl border border-border bg-surface p-6 text-muted">
+        No projects are available yet.
+      </p>
+    )}
+  </main>
+</BaseLayout>
