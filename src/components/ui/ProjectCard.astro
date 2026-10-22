@@ -1,5 +1,6 @@
 ---
 interface Props {
+  id: string;
   title: string;
   category: string;
   description: string;
@@ -9,6 +10,7 @@ interface Props {
 }
 
 const {
+  id,
   title,
   category,
   description,
@@ -16,6 +18,8 @@ const {
   technologies,
   repositoryUrl,
 } = Astro.props;
+
+const projectUrl = `/projects/${encodeURIComponent(id)}/`;
 ---
 
 <article
@@ -58,22 +62,28 @@ const {
   </ul>
 
   <!-- Project links -->
-  {repositoryUrl && (
-    <div class="mt-auto pt-8">
+  <div class="mt-auto flex flex-wrap items-center gap-4 pt-5">
+    <a
+      href={projectUrl}
+      class="inline-flex min-h-11 items-center font-medium
+           text-primary underline-offset-4 hover:underline"
+    >
+      View Case Study
+      <span aria-hidden="true" class="ml-2">
+        &rarr;
+      </span>
+    </a>
+    {repositoryUrl && (
       <a
         href={repositoryUrl}
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex min-h-11 items-center
-                 rounded-md font-semibold text-primary
-                 underline-offset-4 hover:underline"
+        class="inline-flex min-h-11 items-center font-medium
+               text-primary underline-offset-4 hover:underline"
       >
-        View Repository
-        <span aria-hidden="true" class="ml-2">
-          &rarr;
-        </span>
-        <span class="sr-only"> for {title} (opens in a new tab)</span>
+        GitHub Repository
+        <span class="sr-only"> (opens in a new tab)</span>
       </a>
-    </div>
-  )}
+    )}
+  </div>
 </article>

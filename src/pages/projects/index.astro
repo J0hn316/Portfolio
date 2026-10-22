@@ -56,6 +56,7 @@ projects.sort(
       <div class="grid gap-6 md:grid-cols-2">
         {projects.map((project) => (
           <ProjectCard
+            id={project.id}
             title={project.data.title}
             category={project.data.category}
             description={project.data.description}
