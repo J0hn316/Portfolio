@@ -1,4 +1,9 @@
 ---
+const pathname = Astro.url.pathname;
+
+const isHomePage = pathname === "/";
+const isProjectsPage = pathname === "/projects/";
+
 const navigationLinks = [
   { label: "Home", href: "/#home" },
   { label: "About", href: "/#about" },
@@ -7,6 +12,18 @@ const navigationLinks = [
   { label: "Projects", href: "/projects/" },
   { label: "Contact", href: "/#contact" },
 ];
+
+function isCurrentPage(href: string): boolean {
+  if (href === "/#home") {
+    return isHomePage;
+  }
+
+  if (href === "/projects/") {
+    return isProjectsPage;
+  }
+
+  return false;
+}
 ---
 
 <header class="sticky top-0 z-50 border-b border-border bg-background">
@@ -38,9 +55,13 @@ const navigationLinks = [
       {navigationLinks.map((link) => (
         <a
           href={link.href}
-          class="rounded-sm text-sm font-medium text-muted
-                   transition-colors hover:text-primary
-                   focus-visible:text-primary"
+          aria-current={isCurrentPage(link.href) ? "page" : undefined}
+          class:list={[
+            "inline-flex min-h-11 items-center rounded-md px-3 py-2 text-sm transition-colors",
+            isCurrentPage(link.href)
+              ? "font-semibold text-primary"
+              : "font-medium text-muted hover:text-foreground",
+          ]}
         >
           {link.label}
         </a>
@@ -124,10 +145,13 @@ const navigationLinks = [
             <li>
               <a
                 href={link.href}
-                class="block rounded-lg px-4 py-3
-                         text-sm font-medium text-foreground
-                         hover:bg-background hover:text-primary
-                         focus-visible:bg-background"
+                aria-current={isCurrentPage(link.href) ? "page" : undefined}
+                class:list={[
+                  "block rounded-md px-4 py-3 text-sm transition-colors",
+                  isCurrentPage(link.href)
+                    ? "bg-surface font-semibold text-primary"
+                    : "text-muted hover:bg-surface hover:text-foreground",
+                ]}
               >
                 {link.label}
               </a>
