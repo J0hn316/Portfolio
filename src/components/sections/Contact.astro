@@ -1,25 +1,6 @@
 ---
-interface ContactMethod {
-  label: string;
-  description: string;
-  href: string;
-  external: boolean;
-}
-
-const contactMethods: ContactMethod[] = [
-  {
-    label: "GitHub",
-    description: "Explore my software projects and repositories.",
-    href: "https://github.com/J0hn316",
-    external: true,
-  },
-  {
-    label: "LinkedIn",
-    description: "Connect with me professionally.",
-    href: "https://www.linkedin.com/in/john-wrimene-3b0735228/",
-    external: true,
-  },
-];
+import { siteConfig } from "../../config/site";
+const contactMethods = siteConfig.socialLinks;
 ---
 
 <section
@@ -84,8 +65,8 @@ const contactMethods: ContactMethod[] = [
         </ul>
       ) : (
         <p class="text-sm leading-relaxed text-muted">
-          Professional contact links will be added here before the portfolio is
-          published.
+          There's currently an issue displaying my professional contact links.
+          Sorry about that. I'll have it fixed soon.
         </p>
       )}
     </div>

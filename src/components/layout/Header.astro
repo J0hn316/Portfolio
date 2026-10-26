@@ -1,4 +1,6 @@
 ---
+import { siteConfig } from "../../config/site";
+
 const pathname = Astro.url.pathname;
 
 const isHomePage = pathname === "/";
@@ -47,7 +49,7 @@ function isCurrentPage(href: string): boolean {
         J
       </span>
 
-      <span class="font-semibold tracking-tight">Developer Portfolio</span>
+      <span class="font-semibold tracking-tight">{siteConfig.name}</span>
     </a>
 
     <!-- Desktop navigation -->
